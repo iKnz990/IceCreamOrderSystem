@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<style>
+table, th, td {
+  border:1px solid black;
+}
+</style>
+<head>
+<meta charset="ISO-8859-1">
+<title>View Past Orders</title>
+</head>
+<body>
+<form>
+<table>
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Size</th>
+<th>Flavor</th>
+<th>Cone Choice</th>
+<th>Sprinkles?</th>
+<th>Marshmellows?</th>
+<th>Chocolate Chips?</th>
+</tr>
+<tr th:each="currentOrder : ${orders}">
+<td th:text="${currentOrder.id}"/>
+<td th:text="${currentOrder.name}"/>
+<td th:text="${currentOrder.size}"/>
+<td th:text="${currentOrder.flavors.flavor}"/>
+<td th:text="${currentOrder.conechoice.conechoice}"/>
+<td th:text="${currentOrder.toppings.topping1}"/>
+<td th:text="${currentOrder.toppings.topping2}"/>
+<td th:text="${currentOrder.toppings.topping3}"/>
+<td><a th:href="@{/edit/{id}(id=${currentOrder.id})}">Edit</a></td>
+<td><a th:href="@{/delete/{id}(id=${currentOrder.id})}">Delete</a></td>
+</table>
+
+</form>
+
+<a href = "../inputOrder">Add New Order</a>
+</body>
+</html>

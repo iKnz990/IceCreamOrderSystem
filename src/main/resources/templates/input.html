@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>What does the customer want?</title>
+</head>
+<body>
+<form th:object="${newOrder}" th:action="@{/update/{id}(id=${newOrder.id})}" method='POST'>
+Name:<input name="name" size="20" th:field="*{name}"><br/>
+Size:<select name="size" th:field="*{size}">
+	<option value="small">Small</option>
+	<option value="medium">Medium</option>
+	<option value="large">Large</option>
+	</select><br/>
+Cone:<select name="cone" th:field="*{conechoice.conechoice}">
+	<option value="waffle">Waffle Cone</option>
+	<option value="regular">Regular Cone</option>
+	<option value="bowl">Bowl</option>
+	<option value="shake">Shake</option>
+	</select><br/>
+Flavor:<select name="flavor" th:field="*{flavors.flavor}">
+	<option value="chocolate">Chocolate</option>
+	<option value="vanilla">Vanilla</option>
+	<option value="strawberry">Strawberry</option>
+	<option value="butter pecan">Butter Pecan</option>
+	</select><br/>
+<h3>Toppings:</h3>
+<label for="topping1">Sprinkles</label>
+<input type="checkbox" name="topping1" th:field="*{toppings.topping1}" value="Sprinkles"><br/>
+<label for="topping2">Marshmellows</label>
+<input type="checkbox" name="topping2" th:field="*{toppings.topping2}" value="Marshmellows"><br/>
+<label for="topping3">Chocolate Chips</label>
+<input type="checkbox" name="topping3" th:field="*{toppings.topping3}" value="Chocolate Chips"><br/>
+
+
+
+<input name="submit" type="submit" value="submit"/>
+
+</form>
+<a href = "viewPastOrders">View Past Orders</a>
+</body>
+</html>
