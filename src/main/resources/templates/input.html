@@ -3,6 +3,51 @@
 <head>
 <meta charset="UTF-8">
 <title>What does the customer want?</title>
+
+<script>
+
+const toppings = ["Sprinkles", "Chocolate Chips", "Marshmellows","Gummie Bears", "Cookie Dough","Hot Fudge","Cheetos"]
+
+function chooseToppings(){
+
+document.getElementById("toppingListBox1").innerHTML="<select name="+"toppings.topping1 "+"id="+"toppings.topping1 "+"th:field="+"*{toppings.topping1}"+"></select>";
+document.getElementById("toppingListBox2").innerHTML="<select name="+"toppings.topping2 "+"id="+"toppings.topping2 "+"th:field="+"*{toppings.topping2}"+"></select>";
+document.getElementById("toppingListBox3").innerHTML="<select name="+"toppings.topping3 "+"id="+"toppings.topping3 "+"th:field="+"*{toppings.topping3}"+"></select>";
+loadToppings();
+}
+
+function loadToppings(){
+    const select = document.getElementById("toppings.topping1");
+    const select2 = document.getElementById("toppings.topping2");
+    const select3 = document.getElementById("toppings.topping3");
+
+    for (const [index,a] of toppings.entries()){
+        const opt = document.createElement('option');
+        opt.id = "topping1";
+        opt.value =toppings[index];
+        opt.innerText=toppings[index];
+        select.appendChild(opt);
+    }
+    for (const [index,a] of toppings.entries()){
+        const opt = document.createElement('option');
+        opt.id = "topping2";
+        opt.value =toppings[index];
+        opt.innerText=toppings[index];
+        select2.appendChild(opt);
+    }
+    for (const [index,a] of toppings.entries()){
+        const opt = document.createElement('option');
+        opt.id = "topping3";
+        opt.value =toppings[index];
+        opt.innerText=toppings[index];
+        select3.appendChild(opt);
+    }
+}
+
+</script>
+
+
+
 </head>
 <body>
 <form th:object="${newOrder}" th:action="@{/update/{id}(id=${newOrder.id})}" method='POST'>
@@ -11,26 +56,34 @@ Size:<select name="size" th:field="*{size}">
 	<option value="small">Small</option>
 	<option value="medium">Medium</option>
 	<option value="large">Large</option>
-	</select><br/>
+	</select><br/><br/>
 Cone:<select name="cone" th:field="*{conechoice.conechoice}">
 	<option value="waffle">Waffle Cone</option>
 	<option value="regular">Regular Cone</option>
 	<option value="bowl">Bowl</option>
 	<option value="shake">Shake</option>
-	</select><br/>
+	</select><br/><br/>
 Flavor:<select name="flavor" th:field="*{flavors.flavor}">
 	<option value="chocolate">Chocolate</option>
 	<option value="vanilla">Vanilla</option>
 	<option value="strawberry">Strawberry</option>
 	<option value="butter pecan">Butter Pecan</option>
-	</select><br/>
-<h3>Toppings:</h3>
-<label for="topping1">Sprinkles</label>
-<input type="checkbox" name="topping1" th:field="*{toppings.topping1}" value="Sprinkles"><br/>
-<label for="topping2">Marshmellows</label>
-<input type="checkbox" name="topping2" th:field="*{toppings.topping2}" value="Marshmellows"><br/>
-<label for="topping3">Chocolate Chips</label>
-<input type="checkbox" name="topping3" th:field="*{toppings.topping3}" value="Chocolate Chips"><br/>
+	</select><br/><br/>
+
+
+
+Topping 1: <span id ="toppingListBox1">
+
+</span></br>
+
+Topping 2: <span id ="toppingListBox2">
+
+</span></br>
+
+Topping 3: <span id ="toppingListBox3">
+
+</span></br>
+
 
 
 
@@ -39,4 +92,6 @@ Flavor:<select name="flavor" th:field="*{flavors.flavor}">
 </form>
 <a href = "viewPastOrders">View Past Orders</a>
 </body>
+
+<script>chooseToppings();</script>
 </html>
